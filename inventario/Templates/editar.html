@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static%}
+
+{% block title %}
+    Editar Producto
+{% endblock title %}
+
+{% block content %}
+    <form action="{% url 'editar' producto.id %}" method="post">
+        {% csrf_token %}
+        <table>
+            {{formulario}}
+        </table>
+        <button type="submit" class="btn btn-dark" style="color: white; font-style: italic;">Guardar</button>
+        <a href="{% url 'main' %}" class="btn btn-secondary" style="color: white; font-style: italic;">Cancelar</a>
+    
+    </form>
+{% endblock content %}
