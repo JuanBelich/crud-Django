@@ -1,0 +1,22 @@
+databases:
+  - name: negocio-db
+    databaseName: negocio
+    user: negocio
+
+services:
+  - type: web
+    name: negocio-web
+    env: python
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn negocio.wsgi:application"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: negocio-db
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DJANGO_SETTINGS_MODULE
+        value: negocio.settings_production
+      - key: DEBUG
+        value: False
