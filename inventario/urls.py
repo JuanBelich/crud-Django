@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from inventario.views import main,crearProducto,eliminarProducto,principal,editarProducto
+from inventario.views import main,crearProducto,eliminarProducto,principal,editarProducto,custom_logout
 from django.contrib.auth import views
 
 urlpatterns = [
@@ -10,5 +10,5 @@ urlpatterns = [
     path('main/',main,name='main'),
     path('editar/<id>',editarProducto,name='editar'),
     path('login/',views.LoginView.as_view(template_name='login.html'),name='login'),
-    path('logout/',views.LogoutView.as_view(),name='logout')
+    path('logout/',custom_logout,name='logout')
 ]

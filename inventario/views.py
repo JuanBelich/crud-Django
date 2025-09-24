@@ -1,4 +1,5 @@
 from django.shortcuts import render,redirect,get_object_or_404
+from django.contrib.auth import logout
 
 from .models import Productos,Categoria
 from .forms import ProductoForm
@@ -46,3 +47,7 @@ def principal(request):
     
     context={'productos':productos,'categoria':categoria}
     return render (request,'principal.html',context)
+
+def custom_logout(request):
+    logout(request)
+    return redirect('principal')
