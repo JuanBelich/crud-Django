@@ -16,9 +16,24 @@ def main(request):
 
 @login_required
 def crearProducto (request):
-    formulario = ProductoForm(request.POST)
-    if formulario.is_valid():
-        formulario.save()
+    if request.method == 'POST':
+        formulario = ProductoForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            return redirect("main")
+        else:
+            # If form is invalid, redirect back to main with error context
+            productos = Productos.objects.all()
+            categoria = Categoria.objects.all()
+            context = {
+                'productos': productos,
+                'categoria': categoria,
+                'formulario': formulario,
+                'error': 'Por favor, corrige los errores en el formulario.'
+            }
+            return render(request, 'listado.html', context)
+    else:
+        # If not POST, redirect to main
         return redirect("main")
 
 @login_required
@@ -40,6 +55,10 @@ def editarProducto(request,id):
             if formulario.is_valid():
                 formulario.save()
                 return redirect('main')
+            else:
+                # If form is invalid, render the edit form again with errors
+                ctx={'formulario':formulario,'producto':producto}
+                return render(request,'editar.html',ctx)
     
 def principal(request):
     productos= Productos.objects.all()

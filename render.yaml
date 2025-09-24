@@ -20,5 +20,7 @@ services:
         value: negocio.settings_production
       - key: DEBUG
         value: False
+      - key: ENABLE_DEBUG_TEMP
+        value: True
       - key: ALLOWED_HOSTS
-        value: localhost,127.0.0.1,.onrender.com
+        value: localhost,127.0.0.1,*.onrender.com,crud-django-5s63.onrender.com
