@@ -17,7 +17,7 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 if config('ENABLE_DEBUG_TEMP', default=False, cast=bool):
     DEBUG = True
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1,*.onrender.com,crud-django-5s63.onrender.com').split(',')
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1,.onrender.com,crud-django-5s63.onrender.com').split(',')
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
@@ -49,7 +49,6 @@ SECURE_HSTS_PRELOAD = True
 # CSRF settings
 CSRF_TRUSTED_ORIGINS = [
     'https://crud-django-5s63.onrender.com',
-    'https://*.onrender.com',
 ]
 
 # HTTPS settings (uncomment when using HTTPS)
